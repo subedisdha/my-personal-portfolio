@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Shraddha Subedi — Frontend &amp; .NET Developer</title>
+  <meta name="description" content="Interactive portfolio of Shraddha Subedi, a BSc.CSIT graduate from Kathmandu, Nepal building web applications with .NET MVC, React and modern frontend tools. Explore her projects, skills and experience in a navigable 3D space." />
+  <meta name="author" content="Shraddha Subedi" />
+  <meta name="theme-color" content="#070d1a" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Shraddha Subedi — Frontend &amp; .NET Developer" />
+  <meta property="og:description" content="An interactive 3D portfolio: travel through an aurora-lit arctic bay of stations to explore projects, skills and experience." />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Shraddha Subedi — Frontend &amp; .NET Developer" />
+  <meta name="twitter:description" content="An interactive 3D portfolio built with Three.js." />
+
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <link rel="stylesheet" href="/src/styles/main.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Space+Grotesk:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Shraddha Subedi",
+    "jobTitle": "Frontend & .NET Developer",
+    "email": "mailto:shraddhaa.subedi@gmail.com",
+    "address": { "@type": "PostalAddress", "addressLocality": "Baneshwor, Kathmandu", "addressCountry": "NP" },
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "Tribhuvan University" },
+    "sameAs": [
+      "https://www.linkedin.com/in/shraddha-subedi-810b6b19a/",
+      "https://github.com/subedisdha/"
+    ]
+  }
+  </script>
+
+  <style>
+    /* Pre-paint guard so the very first frame is already on-palette */
+    html { background: #070d1a; }
+  </style>
+
+  <!--
+    Failsafe: this plain script always runs, even where ES modules are blocked
+    (e.g. opening the file directly via file://). If the app hasn't booted a few
+    seconds in, it replaces the dark void with an explanation instead.
+  -->
+  <script>
+    (function () {
+      function show(title, detail) {
+        var n = document.getElementById('boot-failsafe');
+        if (!n) {
+          n = document.createElement('div');
+          n.id = 'boot-failsafe';
+          n.style.cssText =
+            'position:fixed;inset:0;z-index:300;background:#070d1a;color:#e8f0f7;' +
+            'display:flex;flex-direction:column;align-items:center;justify-content:center;' +
+            'gap:16px;padding:2rem;text-align:center;' +
+            'font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:14px;line-height:1.7';
+          document.body.appendChild(n);
+        }
+        n.innerHTML =
+          '<p style="margin:0;color:#6ee7f0;letter-spacing:.24em;text-transform:uppercase;font-size:11px">' +
+            title + '</p>' +
+          '<p id="boot-failsafe-msg" style="margin:0;max-width:600px"></p>' +
+          '<p id="boot-failsafe-detail" style="margin:0;max-width:640px;color:#9aa396;font-size:12px;' +
+            'white-space:pre-wrap;word-break:break-word"></p>';
+        return {
+          msg: n.querySelector('#boot-failsafe-msg'),
+          detail: n.querySelector('#boot-failsafe-detail'),
+        };
+      }
+
+      // Surface uncaught startup errors visibly instead of a silent black page.
+      window.addEventListener('error', function (e) {
+        if (window.__PORTFOLIO_BOOTED__) return;
+        var slots = show('startup error', '');
+        slots.msg.textContent = 'A script error stopped the portfolio from starting.';
+        slots.detail.textContent =
+          (e && e.message ? e.message : 'unknown error') +
+          (e && e.filename ? '\n' + e.filename + ':' + (e.lineno || '') : '');
+      });
+
+      window.addEventListener('DOMContentLoaded', function () {
+        setTimeout(function () {
+          if (window.__PORTFOLIO_BOOTED__) return;
+          var log = document.getElementById('boot-log');
+          if (log && log.childElementCount > 0) return; // boot sequence is running
+          var slots = show('not served over http', '');
+          slots.msg.textContent =
+            'This page was most likely opened directly from disk. Browsers block module ' +
+            'scripts over file:// — so nothing can load and the page stays black.';
+          slots.detail.textContent =
+            'Fix — serve it locally, then open the printed localhost URL:\n\n' +
+            '  npm run dev                      development\n' +
+            '  npm run build + npm run preview  production';
+        }, 4500);
+      });
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#resume">Skip to accessible content</a>
+
+  <!-- Boot / entry sequence -->
+  <div id="boot" class="boot" role="dialog" aria-modal="true" aria-label="Entering the experience">
+    <div class="boot__inner">
+      <p class="boot__log mono" id="boot-log" aria-hidden="true"></p>
+      <button class="boot__enter" id="boot-enter" type="button">
+        <span class="boot__enter-label">Enter the workshop</span>
+        <span class="boot__enter-key mono">press enter · or tap</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- WebGL stage -->
+  <div id="stage" aria-hidden="true"></div>
+
+  <!-- HUD -->
+  <header class="hud-top">
+    <a class="wordmark" href="#origin" data-goto="0" aria-label="Back to start — Shraddha Subedi">
+      <span class="wordmark__mark" aria-hidden="true"></span>
+      <span class="wordmark__text">Shraddha&nbsp;Subedi<span class="wordmark__dot">.</span></span>
+    </a>
+    <p class="readout mono" id="hud-readout" aria-hidden="true">00 · ORIGIN</p>
+  </header>
+
+  <nav class="rail" id="rail" aria-label="Portfolio stations"></nav>
+
+  <div class="hint mono hint--desktop" aria-hidden="true">scroll to travel&ensp;·&ensp;click objects&ensp;·&ensp;<kbd>↑</kbd><kbd>↓</kbd> stations</div>
+  <div class="hint mono hint--mobile" aria-hidden="true">swipe to travel · tap objects</div>
+
+  <div class="arrows">
+    <button type="button" class="arrow-btn" id="arrow-prev" aria-label="Previous station">↑</button>
+    <button type="button" class="arrow-btn" id="arrow-next" aria-label="Next station">↓</button>
+  </div>
+
+  <!-- Section panels -->
+  <main id="panels" class="panels"></main>
+
+  <!-- Project detail modal -->
+  <div id="modal" class="modal" hidden>
+    <div class="modal__backdrop" data-modal-close></div>
+    <div class="modal__card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button type="button" class="modal__close" id="modal-close" aria-label="Close details" data-modal-close>×</button>
+      <div class="modal__body" id="modal-body"><!-- injected --></div>
+    </div>
+  </div>
+
+  <div id="tooltip" class="tooltip mono" aria-hidden="true"></div>
+  <div id="toast" class="toast mono" role="status" aria-live="polite"></div>
+
+  <!-- Custom cursor -->
+  <div id="cursor-dot" class="cursor-dot" aria-hidden="true"></div>
+  <div id="cursor-ring" class="cursor-ring" aria-hidden="true"></div>
+
+  <noscript>
+    <div style="position:fixed;inset:0;background:#070d1a;color:#e8f0f7;display:flex;align-items:center;justify-content:center;padding:2rem;font-family:monospace;text-align:center;z-index:99">
+      This portfolio is an interactive experience and needs JavaScript.<br /><br />
+      Reach Shraddha directly:
+      <a href="mailto:shraddhaa.subedi@gmail.com" style="color:#6ee7f0">shraddhaa.subedi@gmail.com</a>
+    </div>
+  </noscript>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
